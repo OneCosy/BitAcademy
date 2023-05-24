@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bit.vo">
+    <insert id="insertMember" parameterType="member">
+        INSERT INTO MEMBER (mem_id, mem_pass, mem_name, mem_date)
+        VALUES (#{id}, #{password}, #{name}, now())
+    </insert>
+
+    <select id="getIdCheck" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT mem_pass FROM MEMBER
+        WHERE mem_id=#{VALUE}
+    </select>
+
+    <select id="selectBoard" resultType="HashMap">
+        SELECT * FROM BOARD
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer" parameterType="HashMap">
+        <choose>
+            <when test='curCategory == "SELECT"'>
+                SELECT  COUNT(*) TOTAL
+                FROM    BOARD;
+            </when>
+
+            <otherwise>
+                SELECT  COUNT(*) TOTAL
+                FROM    BOARD
+                WHERE   ${curCategory} LIKE CONCAT('%', #{inputText}, '%');
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="selectPage" resultType="board" parameterType="HashMap">
+        <choose>
+            <when test='curCategory=="SELECT"'>
+                SELECT  *
+                FROM    BOARD LIMIT 10 OFFSET #{pageNum}
+            </when>
+
+            <otherwise>
+                SELECT  *
+                FROM    BOARD
+                WHERE   ${curCategory} LIKE CONCAT('%', #{inputText}, '%') LIMIT 10 OFFSET #{pageNum};
+            </otherwise>
+        </choose>
+    </select>
+</mapper>
+
