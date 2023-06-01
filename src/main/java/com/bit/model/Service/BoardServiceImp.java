@@ -1,5 +1,6 @@
 package com.bit.model.Service;
 
+import com.bit.model.Dao.BoardDao;
 import com.bit.model.Dao.BoardDaoImp;
 import com.bit.vo.BoardVO;
 import com.bit.vo.MemberVO;
@@ -37,5 +38,25 @@ public class BoardServiceImp implements BoardService {
     @Override
     public List<BoardVO> selectPage(HashMap<String, Object> map) {
         return BoardDaoImp.getBoardDao().selectPage(map);
+    }
+
+    @Override
+    public void insertBoard(BoardVO vo) {
+        BoardDaoImp.getBoardDao().insertBoard(vo);
+    }
+
+    @Override
+    public void updateHit(int no) {
+        BoardDaoImp.getBoardDao().updateHit(no);
+    }
+
+    @Override
+    public Object selectInfo(int no) {
+        return BoardDaoImp.getBoardDao().selectInfo(no);
+    }
+
+    @Override
+    public void deleteBoard(int no) {
+        BoardDaoImp.getBoardDao().deleteBoard(no);
     }
 }

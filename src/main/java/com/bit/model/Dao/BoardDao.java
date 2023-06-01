@@ -16,4 +16,11 @@ public interface BoardDao {
     public int selectTotal(HashMap<String, Object> map);
 
     public List<BoardVO> selectPage(HashMap<String, Object> map);
+
+    public void insertBoard(BoardVO vo);
+
+    public void updateHit(int no);
+
+    public Object selectInfo(int no);
+    public void deleteBoard(int no);
 }

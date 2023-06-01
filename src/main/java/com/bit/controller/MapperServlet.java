@@ -20,6 +20,26 @@ public class MapperServlet {
             processController = new ListController("board/board.jsp", false);
         }
 
+        if (cmd.equalsIgnoreCase("hit")) {
+            processController = new HitController("board/info.jsp", false);
+        }
+
+        if (cmd.equalsIgnoreCase("write")) {
+            processController = new WriteController("board/board.jsp", false);
+        }
+
+        if (cmd.equalsIgnoreCase("info")) {
+            processController = new InfoController("board/info.jsp", false);
+        }
+
+        if (cmd.equalsIgnoreCase("modify")) {
+            processController = new ModifyController("board/info.jsp", false);
+        }
+
+        if (cmd.equalsIgnoreCase("delete")) {
+            processController = new DeleteController("board.do?cmd=paging", false);
+        }
+
         return processController;
     }
 }

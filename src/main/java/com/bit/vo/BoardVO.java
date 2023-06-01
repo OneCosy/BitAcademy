@@ -1,7 +1,7 @@
 package com.bit.vo;
 
 public class BoardVO {
-    private int no;
+    private int brd_idx;
     private String brd_category;
     private String brd_writer;
     private String brd_pass;
@@ -14,24 +14,34 @@ public class BoardVO {
     public BoardVO() {
     }
 
-    public BoardVO(int no, String brd_category, String brd_writer, String brd_pass, String brd_subject, String brd_content, String brd_file, int brd_readcount, String brd_date) {
-        this.no = no;
+    public BoardVO(String brd_category, String brd_writer, String brd_pass, String brd_subject, String brd_content, String brd_file) {
         this.brd_category = brd_category;
         this.brd_writer = brd_writer;
         this.brd_pass = brd_pass;
         this.brd_subject = brd_subject;
         this.brd_content = brd_content;
         this.brd_file = brd_file;
-        this.brd_readcount = brd_readcount;
-        this.brd_date = brd_date;
     }
 
-    public int getNo() {
-        return no;
+//    public BoardVO(int no, String brd_category, String brd_writer, String brd_pass, String brd_subject, String brd_content, String brd_file, int brd_readcount, String brd_date) {
+//        this.no = no;
+//        this.brd_category = brd_category;
+//        this.brd_writer = brd_writer;
+//        this.brd_pass = brd_pass;
+//        this.brd_subject = brd_subject;
+//        this.brd_content = brd_content;
+//        this.brd_file = brd_file;
+//        this.brd_readcount = brd_readcount;
+//        this.brd_date = brd_date;
+//    }
+
+
+    public int getBrd_idx() {
+        return brd_idx;
     }
 
-    public void setNo(int no) {
-        this.no = no;
+    public void setBrd_idx(int brd_idx) {
+        this.brd_idx = brd_idx;
     }
 
     public String getBrd_category() {
@@ -101,7 +111,7 @@ public class BoardVO {
     @Override
     public String toString() {
         return "BoardVO{" +
-                "no=" + no +
+                "brd_idx=" + brd_idx +
                 ", brd_category='" + brd_category + '\'' +
                 ", brd_writer='" + brd_writer + '\'' +
                 ", brd_pass='" + brd_pass + '\'' +

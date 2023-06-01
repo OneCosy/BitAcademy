@@ -25,7 +25,7 @@ public class PagingController implements ProcessController {
             currentPage = Integer.parseInt(request.getParameter("p"));  // 현재 페이지;
         }
 
-        System.out.println("currentPage = " + currentPage);
+//        System.out.println("currentPage = " + currentPage);
 
 
         // 단위 페이지 번호, 10 페이지씩 나오도록
@@ -35,8 +35,8 @@ public class PagingController implements ProcessController {
         String curCategory = request.getParameter("category") == null ? "SELECT" : request.getParameter("category");
         String curInputText = request.getParameter("inputText") == null ? "" : request.getParameter("inputText");
 
-        System.out.println(curCategory);
-        System.out.println(curInputText);
+//        System.out.println(curCategory);
+//        System.out.println(curInputText);
 
         HashMap<String, Object> pagingMap = new HashMap<>();
         pagingMap.put("pageNum", pageNum);
@@ -44,9 +44,9 @@ public class PagingController implements ProcessController {
         pagingMap.put("curInputText", curInputText);
 //        pagingMap.put("pageScale", pageScale);
 
-        System.out.println("pageNum = " + pageNum);
-        System.out.println("curCategory = " + curCategory);
-        System.out.println("curInputText = " + curInputText);
+//        System.out.println("pageNum = " + pageNum);
+//        System.out.println("curCategory = " + curCategory);
+//        System.out.println("curInputText = " + curInputText);
 //        System.out.println("pageScale = " + pageScale);
 
         List<BoardVO> table = BoardServiceImp.getBoardService().selectPage(pagingMap);

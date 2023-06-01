@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -61,7 +60,7 @@
 						success: function (data) {
 							console.log(data);
 							if (data.trim() == 'T') {
-								document.location.href = '${pageContext.request.contextPath}/paging.do?cmd=paging&p=1&category=SELECT&inputText=null';
+								document.location.href = '${pageContext.request.contextPath}/paging.do?cmd=paging&p=1&category=SELECT';
 							} else {
 								$("p#loginError").html("입력하신 내용을 다시 확인해주세요.");
 								$("input[name='id']").val('').focus();

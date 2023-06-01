@@ -24,9 +24,6 @@ public class LoginController implements ProcessController {
             String password = request.getParameter("pass");
             String correctPass = BoardServiceImp.getBoardService().getIdCheck(id);
 
-            System.out.println(id);
-            System.out.println(password);
-
             PrintWriter out = response.getWriter();
 
             if (correctPass!=null && correctPass.equals(password)) {

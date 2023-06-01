@@ -93,4 +93,56 @@ public class BoardDaoImp implements BoardDao {
         }
         return pageList;
     }
+
+    @Override
+    public void insertBoard(BoardVO vo) {
+        SqlSession sqlSession = sessionFactory.openSession();
+
+        try {
+            sqlSession.insert("com.bit.vo.insertBoard", vo);
+            sqlSession.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    @Override
+    public void updateHit(int no) {
+        SqlSession sqlSession=sessionFactory.openSession();
+        try {
+            sqlSession.update("com.bit.vo.updateHit",no);
+            sqlSession.commit();
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    @Override
+    public Object selectInfo(int no) {
+        return sessionFactory.openSession().selectOne("com.bit.vo.selectInfo", no);
+    }
+
+    @Override
+    public void deleteBoard(int no) {
+        SqlSession sqlSession=sessionFactory.openSession();
+        try {
+            sqlSession.delete("com.bit.vo.deleteBoard", no);
+            sqlSession.commit();
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            sqlSession.rollback();
+        } finally {
+            sqlSession.close();
+        }
+    }
 }

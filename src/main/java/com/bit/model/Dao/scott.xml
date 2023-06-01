@@ -43,9 +43,30 @@
             <otherwise>
                 SELECT  *
                 FROM    BOARD
-                WHERE   ${curCategory} LIKE CONCAT('%', #{inputText}, '%') LIMIT 10 OFFSET #{pageNum};
+                WHERE   ${curCategory} LIKE CONCAT('%', #{curInputText}, '%') LIMIT 10 OFFSET #{pageNum};
             </otherwise>
         </choose>
     </select>
+
+    <insert id="insertBoard" parameterType="board">
+        INSERT INTO BOARD (brd_category, brd_writer, brd_pass, brd_subject, brd_content, brd_file, brd_readcount, brd_date)
+        VALUES (#{brd_category}, #{brd_writer}, #{brd_pass}, #{brd_subject}, #{brd_content}, #{brd_file}, 0, now())
+    </insert>
+
+    <update id="updateHit" parameterType="java.lang.Integer">
+        UPDATE  BOARD SET brd_readcount=brd_readcount+1
+        WHERE   BRD_IDX=#{brd_idx}
+    </update>
+
+    <select id="selectInfo" parameterType="java.lang.Integer" resultType="board">
+        SELECT  *
+        FROM    BOARD
+        WHERE   BRD_IDX = #{brd_idx}
+    </select>
+
+    <delete id="deleteBoard" parameterType="java.lang.Integer">
+        DELETE  FROM BOARD
+        WHERE   BRD_IDX = ${brd_idx}
+    </delete>
 </mapper>
 

@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC >
 <html>
@@ -67,25 +67,25 @@
         <div class="col-md-8">
             <div class="board-toolbar" style="text-align: right; margin-bottom: 20px">
                 <select id="section_category" class="section-heading">
-                    <option value="SELECT" <c:if test="${empty category or category eq 'SELECT'}">selected</c:if>>선택하세요</option>
-                    <option value="brd_subject" <c:if test="${category eq 'brd_subject'}">selected</c:if>>TITLE</option>
-                    <option value="brd_writer" <c:if test="${category eq 'brd_writer'}">selected</c:if>>WRITER</option>
-                    <option value="brd_category" <c:if test="${curcol eq 'brd_category'}">selected</c:if>>CATEGORY</option>
-                    <option value="brd_date" <c:if test="${curcol eq 'brd_date'}">selected</c:if>>REGDATE</option>
+                    <option value="SELECT" <c:if test="${empty sessionScope.curCategory or sessionScope.curCategory eq 'SELECT'}">selected</c:if>>선택하세요</option>
+                    <option value="brd_subject" <c:if test="${sessionScope.curCategory eq 'brd_subject'}">selected</c:if>>TITLE</option>
+                    <option value="brd_writer" <c:if test="${sessionScope.curCategory eq 'brd_writer'}">selected</c:if>>WRITER</option>
+                    <option value="brd_category" <c:if test="${sessionScope.curCategory eq 'brd_category'}">selected</c:if>>CATEGORY</option>
+                    <option value="brd_date" <c:if test="${sessionScope.curCategory eq 'brd_date'}">selected</c:if>>REGDATE</option>
                 </select>
-                <input id="input_search" type="text" class="input-lg">
+                <input id="input_search" type="text" class="input-lg" value="${sessionScope.curInput}">
                 <a href="#" id="search" class="btn btn-primary btn-sm">
                     <i class="glyphicon glyphicon-search" style="margin-right: 15px"></i>검색
                 </a>
 
-                <a href="write.jsp" class="btn btn-primary btn-sm">
+                <a href="${pageContext.request.contextPath}/board/write.jsp" id="write" class="btn btn-primary btn-sm">
                     <i class="glyphicon glyphicon-pencil" style="margin-right: 15px"></i>쓰기
                 </a>
             </div>
 
             <div class="list-group">
                 <c:forEach var="entry" items="${list}">
-                    <a href="info.jsp" class="list-group-item">
+                    <a href="info.do?cmd=hit&no=${entry.brd_idx}" class="list-group-item" accept-charset="UTF-8">
                         <%-- 카테고리, 제목, New --%>
                         <div class="board-title">
                             <span class="board-category">[${entry.brd_category}]</span>
@@ -97,7 +97,7 @@
                         <div class="board-meta" style="font-weight: 400; font-size: 1.2rem; color: #404040">
                             <p>
                                 <i class="glyphicon glyphicon-user"></i> ${entry.brd_writer} 님
-                                <i class="glyphicon glyphicon-comment"></i> ${entry.brd_readcount}
+                                <i class="glyphicon glyphicon-comment"></i> 0
                                 <i class="glyphicon glyphicon-ok"></i> ${entry.brd_readcount}
                                 <i class="glyphicon glyphicon-time"></i> ${entry.brd_date}
                             </p>
@@ -174,6 +174,7 @@
             </div>
         </div>
     </footer>
+
     <!-- jQuery -->
     <script src="${pageContext.request.contextPath}/board/js/jquery.js"></script>
 

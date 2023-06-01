@@ -22,7 +22,7 @@ public class JoinController implements ProcessController {
         String name = request.getParameter("name");
 
         MemberVO vo = new MemberVO(id, password, name);
-        System.out.println(vo);
+//        System.out.println(vo);
 
         BoardServiceImp.getBoardService().insertMember(vo);
 
